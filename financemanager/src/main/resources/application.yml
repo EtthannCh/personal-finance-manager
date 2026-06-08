@@ -1,0 +1,28 @@
+spring.application.name: Personal Finance Manager
+
+server:
+  port: 8080
+spring:
+  datasource:
+    url: ${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  config:
+    import: optional:file:.env[.properties]
+  flyway:
+    driver-class-name: org.postegresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    
+springdoc:
+    api-docs:
+        enabled: true
+    swagger-ui:
+        enabled: true
+        path: /swagger-ui.html
+
+  
+        
+# spring.profiles.active: prod
