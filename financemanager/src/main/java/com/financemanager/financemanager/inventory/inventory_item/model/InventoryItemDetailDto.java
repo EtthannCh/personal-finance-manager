@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -33,6 +34,8 @@ public class InventoryItemDetailDto {
     private UUID prevUpdatedById;
     private String prevUpdatedBy;
     private LocalDateTime prevUpdatedAt;
+
+    private Set<InventoryItemDetailDto> inventoryItemDetail;
 
     public InventoryItemDetailDto fromRecord(InventoryItemDetail iid) {
         if (iid == null)

@@ -19,10 +19,11 @@ spring:
 springdoc:
     api-docs:
         enabled: true
+        path: /v3/api/docs
     swagger-ui:
         enabled: true
         path: /swagger-ui.html
 
   
         
-# spring.profiles.active: prod
+# spring.profiles.active: dev

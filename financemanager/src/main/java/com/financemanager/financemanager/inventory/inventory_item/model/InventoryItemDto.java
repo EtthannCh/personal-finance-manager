@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -29,7 +30,9 @@ public class InventoryItemDto {
     private String prevUpdatedBy;
     private LocalDateTime prevUpdatedAt;
 
-    public InventoryItemDto fromRecord(InventoryItem ii) {
+    private Set<InventoryItemDetailDto> iidSet;
+
+    public static InventoryItemDto fromRecord(InventoryItem ii) {
         if (ii == null)
             return null;
 
@@ -49,7 +52,7 @@ public class InventoryItemDto {
                 .setPrevUpdatedAt(ii.prev_updated_at());
     }
 
-    public List<InventoryItemDto> fromRecordList(List<InventoryItem> listIi) {
+    public static List<InventoryItemDto> fromRecordList(List<InventoryItem> listIi) {
         if (listIi.isEmpty())
             return Collections.emptyList();
 
