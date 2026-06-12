@@ -1,11 +1,14 @@
 package com.financemanager.financemanager.inventory.unit_of_measure;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.financemanager.financemanager.inventory.unit_of_measure.model.UOM;
+import com.financemanager.financemanager.inventory.unit_of_measure.model.UOMCombobox;
 
 @Repository
 public class UomRepository {
@@ -43,5 +46,24 @@ public class UomRepository {
                 .update(keyHolder, "id");
 
         return keyHolder.getKey().longValue();
+    }
+
+    public List<UOMCombobox> uomComboboxByListId(List<Long> ids) {
+        return jdbcClient.sql("""
+                select
+                    id uomId,name uomName, code uomCode
+                from unit_of_measure
+                where id in(:ids)
+                """)
+                .param("ids", ids)
+                .query(UOMCombobox.class)
+                .list();
+    }
+
+    public List<Long> findUOMIdList() {
+        return jdbcClient.sql("""
+                select id
+                from unit_of_measure
+                    """).query(Long.class).list();
     }
 }

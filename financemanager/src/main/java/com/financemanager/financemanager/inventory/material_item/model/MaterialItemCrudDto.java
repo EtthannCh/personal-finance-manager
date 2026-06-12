@@ -1,5 +1,7 @@
 package com.financemanager.financemanager.inventory.material_item.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.financemanager.financemanager.header.HeaderCollections;
 
@@ -12,11 +14,10 @@ import lombok.experimental.Accessors;
 public class MaterialItemCrudDto {
     private String name;
     private String description;
-    private Long uomId;
-    private String uomName;
+    private List<Long> uomId;
 
     public MaterialItem toRecord(HeaderCollections header) {
-        return new MaterialItem(null, name, description, uomId, uomName,
+        return new MaterialItem(null, name, description, String.join(",", uomId.stream().map(String::valueOf).toList()),
                 header.getUserId(), header.getUserName(), null,
                 header.getUserId(), header.getUserName(), null,
                 header.getUserId(), header.getUserName(), null);

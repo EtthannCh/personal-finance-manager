@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
         ErrorResponse error = new ErrorResponse();
         error.setErrorCode(exception.getErrorCode());
         error.setMessage(exception.getMessage());
-        error.setStatus(exception.getStatus().value());
+        error.setStatus(460);
         error.setTimestamp(Instant.now());
         error.setPath(request.getRequestURI());
         return new ResponseEntity<>(error, exception.getStatus());
